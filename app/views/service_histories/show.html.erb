@@ -1,0 +1,11 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @service_history %>
+
+<div>
+  <%= link_to "Edit this service history", edit_service_history_path(@service_history) %> 
+  <br>
+  <%= link_to "Back to service histories", service_histories_path %>
+
+  <%= button_to "Destroy this service history", @service_history, method: :delete %>
+</div>

@@ -1,0 +1,91 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Products</h1>
+
+
+
+  <table class="table table-striped table-bordered table-hover">
+  <thead class="thead-dark">
+    <tr>
+    <th>Service ID</th>
+    <th>Service name</th>
+    <th>Descrption</th>
+    <th>price </th>
+    <th>About the service</th>
+    <th colspan='3'></th>
+    </tr>
+    </thead>
+
+<tbody>
+
+  <% @products.each do |product| %>
+    <tr>
+      <td><%= product.id %></td>
+      <td><%= product.name %></td>
+
+      <td><%= product.description %></td>
+      <td><%= product.price %></td>
+
+      <td><%= link_to "Show this product", product %></td>
+      <td>
+      <%= form_with(url: cart_add_path) do |f| %>
+        <%= f.hidden_field :id, value: product.id %>
+        <%= f.number_field :quantity, value: 0, min: 1 %>
+        <%= f.submit "Add To Cart" %>
+      <% end %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+    <p>
+      <%= link_to "Show this product", products_path %>
+    </p>
+  
+
+
+<h1>orderables</h1>
+
+
+
+  <table class="table table-striped table-bordered table-hover">
+  <thead class="thead-dark">
+    <tr>
+    <th>Service ID</th>
+    <th>Service name</th>
+    <th>Descrption</th>
+    <th>price </th>
+    <th>About the service</th>
+    <th colspan='3'></th>
+    </tr>
+    </thead>
+
+<tbody>
+
+  <% @orderables.each do |orderables| %>
+    <tr>
+      <td><%= orderables.id %></td>
+      <td><%= orderables.product_id %></td>
+
+      <td><%= orderables.cart_id %></td>
+      <td><%= orderables.quantity %></td>
+
+      
+      
+      </tr>
+  
+<% end %>
+<tbody>
+</table>
+
+
+
+<td><%= @orderables.first.id  %></td>
+
+
+
+<%  if current_user && current_user.admin %>
+<%= link_to "New product", new_product_path %>
+<% end  %>
+
