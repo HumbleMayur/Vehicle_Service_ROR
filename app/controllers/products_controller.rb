@@ -5,12 +5,18 @@ class ProductsController < ApplicationController
   def index
     @products = Product.all
     @orderables = Orderable.all
+    @service_histories=ServiceHistory.all
+    
+    # @products=@orderable.products.all
+    #aa=Orderable.joins(:products).where("product.id!='1'")
+    
     
   end
 
   # GET /products/1 or /products/1.json
   def show
     @products=Product.find(params[:id])
+    @service_histories=@product.service_histories.all
     # @service_histories=@product.service_histories.all
     # @carts=@product.carts.all
    

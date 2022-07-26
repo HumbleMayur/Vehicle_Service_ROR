@@ -5,16 +5,19 @@ class ServiceHistoriesController < ApplicationController
   def index
     # @service_histories = ServiceHistory.where(customer_id: current_user.id)
     @customers=Customer.all
+    @users=current_user
     @service_histories=ServiceHistory.all
-    
-
+    a=Product.find_by(id: 1)
+    @orderables=a.orderables
+    @products=Product.all
   end
 
   # GET /service_histories/1 or /service_histories/1.json
   def show
-    @service_histories = ServiceHistory.find(params[:id])
+    service_histories = ServiceHistory.find(params[:id])
+    # @customer = @service_histories.customers.all
     # @products=@service_history.products.all
-    # @bookings=@car.bookings.all
+     #@bookings=@car.bookings.all
 
   end
 

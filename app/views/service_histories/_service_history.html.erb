@@ -31,7 +31,11 @@
 
   <p>
     <strong>Amount due:</strong>
-    <%= service_history.amount_due %>
-  </p>
+     <%= @service_history.amount_paid - @service_history.product.price %>
+   
+  </p> 
+
+
+  <%= @service_history.product.price %>
 
 </div>

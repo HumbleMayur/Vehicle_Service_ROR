@@ -3,8 +3,14 @@
 <%= render @product %>
 
 <div>
-  <%= link_to "Edit this product", edit_product_path(@product) %> |
-  <%= link_to "Back to products", products_path %>
+<%  if current_user && current_user.admin %>
+  <%= link_to "Edit this product", edit_product_path(@product) ,class:"btn btn-primary"%> |
+  <%= link_to "Back to products", products_path, class:"btn btn-secondary" %> |
 
-  <%= button_to "Destroy this product", @product, method: :delete %>
+  <%= link_to "Destroy this product", @product, method: :delete ,class:"btn btn-danger"%>
 </div>
+
+
+<% else %>
+ <%= link_to "Back to products", products_path, class:"btn btn-secondary" %>
+ <% end %>

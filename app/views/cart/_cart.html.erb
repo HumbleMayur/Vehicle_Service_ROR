@@ -3,6 +3,7 @@
   <% if @cart.orderables.count > 0 %>
     <%= render "cart/orderables" %>
     <p>Total: <%= @cart.total %></p>
+    <%= link_to "go to cart" ,@cart ,class:"btn btn-success"%>
   <% else %>
     <p>Your cart is empty</p>
   <% end %>

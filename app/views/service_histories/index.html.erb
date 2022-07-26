@@ -1,36 +1,24 @@
 <p style="color: green"><%= notice %></p>
- <br>
+ <%# <br>
  <%= @service_histories.first.status %>
- <br>
+ 
 
-<% @service_histories.each do |service_history|  %>
-
-     
-      <br>
-      
-      <%= service_history.id %>
-       <%= service_history.customer_id %>
-        <%= service_history.status %>
-         <%= service_history.amount_paid %>
-         <br>
-        
-       
-      <% end %>
-     
-      <br>
 
 
 <h1>Service histories</h1>
 <table class="table table-striped table-bordered table-hover">
   <thead class="thead-dark">
     <tr>
-    <th>Customer</th>
+      <th> customer Name</th>
+  
     <th>Service</th>
     <th>Start Date</th>
     <th>End Date </th>
     <th>status</th>
+    <th>Product Price</th>
     <th>Amount Paid</th>
     <th>Amount Due</th>
+
     <th>details</th>
   
     </tr>
@@ -38,31 +26,76 @@
 
 <tbody>
 
+
+<%  if current_user && current_user.admin %>
   <% @service_histories.each do |service_history| %>
     <tr>
-      <td><%= service_history.customer_id %></td>
+     <td><%= service_history.customer.name %></td>
+
+      <td><%= service_history.product.name %></td>
+
+      <td><%= service_history.startdate %></td>
+      <td><%= service_history.enddate %></td>
+
+      <td><%= service_history.status %></td>
+      <td><%= service_history.product.price %></td>
+
+      <td><%= service_history.amount_paid %></td>
+      
+      
+      <td><%= service_history.product.price-service_history.amount_paid  %></td>
+      <td><%= link_to "Show this service history", service_history %></td>
+    </tr>
+      <% end %>
+
+  <%  elsif current_user   && !current_user.admin %>
+  <h1> My Orders</h1>
+     <% @service_histories.each do |service_history| %>
+        <%# <%if service_history.customer.name != @users.username  %> 
+      <%# <% service_history.customer.name == "mayur" %> 
+      <tr>
+      <% if service_history.customer.name ==@users.username  %>
+      <td><%= service_history.customer.name %></td>
       <td><%= service_history.product_id %></td>
 
       <td><%= service_history.startdate %></td>
       <td><%= service_history.enddate %></td>
 
       <td><%= service_history.status %></td>
-      <td><%= service_history.amount_paid %></td>
-      <td><%= service_history.amount_due %></td>
+      <td><%= service_history.product.price %></td>
 
-     <td>
-      <%= link_to "Show this service history", service_history %>
-    </td>
+      <td><%= service_history.amount_paid %></td>
       
+      
+      <td><%= service_history.product.price-service_history.amount_paid  %></td>
+      <td><%= link_to "Show this service history", service_history %></td>
+      <% end %>
+      <% end %>
+       <% end %>
+
     </tr>
-  <% end %>
+
+
   </tbody>
+  
 </table>
 
 
-    
+
     
   
 </div>
 
 <%= link_to "New service history", new_service_history_path %>
+
+
+
+
+
+  <%# <% @customers.each do |customer| %>
+  <%# <tr>
+    <td><%= customer.name %>
+
+
+  
+ 

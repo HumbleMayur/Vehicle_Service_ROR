@@ -26,12 +26,12 @@
       <td><%= product.description %></td>
       <td><%= product.price %></td>
 
-      <td><%= link_to "Show this product", product %></td>
+      <td><%= link_to "More Details", product %></td>
       <td>
       <%= form_with(url: cart_add_path) do |f| %>
         <%= f.hidden_field :id, value: product.id %>
         <%= f.number_field :quantity, value: 0, min: 1 %>
-        <%= f.submit "Add To Cart" %>
+        <%= f.submit "Add To Cart" ,class:"btn btn-info"%>
       <% end %>
       </td>
     </tr>
@@ -39,9 +39,11 @@
   </tbody>
 </table>
 
-    <p>
-      <%= link_to "Show this product", products_path %>
-    </p>
+
+ <%  if current_user && current_user.admin %>
+<%= link_to " Add New Product", new_product_path, class:"btn btn-success" %>
+<% end  %>
+
   
 
 
@@ -52,40 +54,40 @@
   <table class="table table-striped table-bordered table-hover">
   <thead class="thead-dark">
     <tr>
-    <th>Service ID</th>
-    <th>Service name</th>
-    <th>Descrption</th>
-    <th>price </th>
-    <th>About the service</th>
-    <th colspan='3'></th>
+    <th>Order  ID</th>
+    <th>Product id</th>
+    <th>cart id</th>
+    <th>quantity </th>
+   
+    
     </tr>
     </thead>
 
 <tbody>
 
-  <% @orderables.each do |orderables| %>
+  <% @orderables.each do |orderable| %>
+   <%# <% if @service_histories.customer_id !='1' %> %>
+ 
     <tr>
-      <td><%= orderables.id %></td>
-      <td><%= orderables.product_id %></td>
+      <td><%= orderable.id %></td>
+      <td><%= orderable.product_id %></td>
 
-      <td><%= orderables.cart_id %></td>
-      <td><%= orderables.quantity %></td>
+      <td><%= orderable.cart_id %></td>
+      <td><%= orderable.quantity %></td>
 
-      
       
       </tr>
   
+
 <% end %>
 <tbody>
 </table>
 
 
 
-<td><%= @orderables.first.id  %></td>
 
 
 
-<%  if current_user && current_user.admin %>
-<%= link_to "New product", new_product_path %>
-<% end  %>
+
+
 
