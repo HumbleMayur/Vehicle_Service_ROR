@@ -39,6 +39,14 @@ class ServiceHistoriesController < ApplicationController
   def create
     @service_history = ServiceHistory.new(service_history_params)
 
+    # +++++++++++++++++++++++++++++++++++++++++++++++++++++
+    # @customer = Customer.find(params[:customer_id])
+    # @service_history = @customer.service_histories.create(service_history_params)
+    # redirect_to article_path(@article)
+
+
+      # +++++++++++++++++++++++++++++++++++++++++++++++++++++
+
     respond_to do |format|
       if @service_history.save
         format.html { redirect_to service_history_url(@service_history), notice: "Service history was successfully created." }

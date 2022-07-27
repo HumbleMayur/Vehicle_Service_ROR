@@ -23,7 +23,7 @@
 
 <br>
 <% service_history=@service_history %>
-
+<% c=@service_history.customer_id %>
 <%= form_with(model: service_history) do |form| %>
   <% if service_history.errors.any? %>
     <div style="color: red">
@@ -38,6 +38,7 @@
   <% end %>
 <%# <%=  @users.username   %> %>
 
+
 <br>
 <br>
 <br>
@@ -49,7 +50,8 @@
 
   <div>
     <%= form.label :customer_id, style: "display: block" %>
-    <%= form.text_field :customer_id %>
+    <%# <%= form.text_field :customer_id %> 
+     <%= form.text_field :customer_id %>
   </div>
   
   <div>

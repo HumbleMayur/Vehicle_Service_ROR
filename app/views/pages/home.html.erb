@@ -4,7 +4,7 @@
 <h1>Welcome <%= name %></h1>  
 <%# <h1>Welcome <%= name %>
 
-
+<%# <%= render @service_history%> %>
 
 <style>
 * {
@@ -57,7 +57,7 @@
 </div>
   <div class="flex-item-right">Book a Service
 
-
+<%= link_to "Book Services" , new_customer_path  %>
 
   </div>
 </div>
@@ -80,5 +80,4 @@
   <%# <%= @users.usertype %> 
   <%# <%= @users.admin %> 
 <%# <%= current_user.username %> 
-
 

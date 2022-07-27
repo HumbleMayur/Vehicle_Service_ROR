@@ -12,7 +12,9 @@ Rails.application.routes.draw do
   
   resources :products
 
-  
+  resources :customers do
+    resources :service_histories
+  end
   
   #root 'products#index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

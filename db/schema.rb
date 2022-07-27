@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_25_053912) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_27_100909) do
   create_table "carts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -90,6 +90,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_25_053912) do
     t.datetime "updated_at", null: false
     t.boolean "admin", default: false
     t.integer "usertype", default: 0
+    t.string "phone"
+    t.date "DOB"
+    t.string "address"
+    t.string "vehicle_type"
+    t.string "vehicle_number"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

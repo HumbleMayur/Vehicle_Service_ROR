@@ -34,6 +34,7 @@
   </tbody>
 </table>
   <p style="font-size:30px; background-color: coral;  width: 300px;">Your total is Rs    <%= @cart.total %> </p>
-  <%= link_to "Procced to check out" ,"service_histories/new" %>
+   <%= link_to "Procced to check out" , new_service_history_path %> %>
+  <%# <%= render @customer.service_histories %> %>
 
 

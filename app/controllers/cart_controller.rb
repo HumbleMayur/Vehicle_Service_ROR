@@ -1,6 +1,9 @@
 class CartController < ApplicationController
   def show
     @render_cart = false
+    # @service_histories=ServiceHistory.all
+    # @service_history=@customers.service_histories.all
+    # @customer = @service_histories.customers.all
   end
 
   def add

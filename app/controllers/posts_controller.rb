@@ -6,6 +6,7 @@ class PostsController < ApplicationController
   # GET /posts or /posts.json
   def index
     @posts = Post.all
+    @user = User.all
   end
 
   # GET /posts/1 or /posts/1.json
@@ -25,7 +26,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
      # +++++++++++++++++++++++
-     @post.user=current_user
+    #  @post.user=current_user
      # +++++++++++++++++++++++
 
     respond_to do |format|
