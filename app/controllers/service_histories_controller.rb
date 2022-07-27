@@ -14,7 +14,7 @@ class ServiceHistoriesController < ApplicationController
 
   # GET /service_histories/1 or /service_histories/1.json
   def show
-    service_histories = ServiceHistory.find(params[:id])
+    @service_histories = ServiceHistory.find(params[:id])
     # @customer = @service_histories.customers.all
     # @products=@service_history.products.all
      #@bookings=@car.bookings.all
@@ -24,6 +24,11 @@ class ServiceHistoriesController < ApplicationController
   # GET /service_histories/new
   def new
     @service_history = ServiceHistory.new
+    @users=current_user
+    @customers=Customer.all
+    # b= @users.username   
+    # @service_histories=ServiceHistory.all
+    
   end
 
   # GET /service_histories/1/edit
