@@ -2,16 +2,8 @@
 
 <h1>Customers</h1>
 
-<div id="customers">
-  <% @customers.each do |customer| %>
-    <%= render customer %>
-    <p>
-      <%= link_to "Show this customer", customer %>
-    </p>
-  <% end %>
-</div>
 
-<%= link_to "New customer", new_customer_path %>
+
 
 
 <%# 
@@ -20,7 +12,51 @@
     <%# <p>
       <%= link_to "Show this customer", customer %>
     <%# </p>
-  <% end %> %>
-</div> %> %> %>
+  <% end %> 
 
 
+
+<table class="table table-striped table-bordered table-hover">
+  <thead class="thead-dark">
+    <tr>
+      
+  
+    <th>Customer name</th>
+    <th>Email</th>
+    <th>Phone</th>
+   
+    <th>address</th>
+    <th>Date of Birth</th>
+    <th>vehicle_type</th>
+
+    <th>vehicle_number</th>
+    <th>More</th>
+  
+    </tr>
+    </thead>
+
+<tbody>
+
+
+<%  if current_user && current_user.admin %>
+  <% @customers.each do |customer| %>
+    <tr>
+     <td><%= customer.name%></td>
+      <td><%= customer.email %></td>
+      <td><<%= customer.phone %></td>
+      <td> <%= customer.address %></td>
+      <td><<%= customer.DOB %></td>
+      <td><%= customer.vehicle_type %></td>
+      <td><%= customer.vehicle_number %></td>
+      
+      
+      
+      <td><%= link_to "Show this customer", customer %></td>
+      <% end %>
+      <% end %>
+    </tr>
+    <tbody>
+      
+
+</table>
+<%= link_to "New customer", new_customer_path %>

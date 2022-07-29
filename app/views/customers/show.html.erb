@@ -4,13 +4,30 @@
 
 <div>
 
-  <%= link_to "Edit this customer", edit_customer_path(@customer) %> |
-  <%= link_to "Back to customers", customers_path %>
+  
 
-  <%= button_to "Destroy this customer", @customer, method: :delete %>
+
+ 
 </div>
 
 
-  <%= link_to "Select services", products_path %>|
+ 
 
-  <%= link_to "new" ,new_service_history_path %>
+  <%# <%= link_to "new" ,new_service_history_path %> 
+
+
+   <%  if current_user && current_user.admin %>
+   <%= link_to "Edit this customer", edit_customer_path(@customer), class:"btn btn-success" %> 
+   <br>
+   <br>
+<%= button_to "Destroy this customer", @customer, method: :delete ,class:"btn btn-success" %>
+<br>
+  <%= link_to "Back to customers", customers_path %>
+<% else %>
+ <%= link_to "Edit My profile", edit_customer_path(@customer), class:"btn btn-success" %> 
+
+
+<% end  %>
+<br>
+<br>
+ <%= link_to "Select services", products_path %>|

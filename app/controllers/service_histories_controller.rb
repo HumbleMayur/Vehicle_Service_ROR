@@ -4,17 +4,35 @@ class ServiceHistoriesController < ApplicationController
   # GET /service_histories or /service_histories.json
   def index
     # @service_histories = ServiceHistory.where(customer_id: current_user.id)
-    @customers=Customer.all
-    @users=current_user
+
+    if current_user.admin==true 
+      @customers = Customer.all
+    else
+      @customers = Customer.where(user_id: current_user.id)
+    end
+    # @customers=Customer.all
+    # @users=current_user
+
+    
+    @users=User.all
     @service_histories=ServiceHistory.all
     a=Product.find_by(id: 1)
     @orderables=a.orderables
     @products=Product.all
+
+
+    # if current_user.admin==true 
+    #   @service_histories = ServiceHistory.all
+    # else
+    #   @service_histories = ServiceHistory.where(user_id: current_user.id)
+    # end
+  
   end
 
   # GET /service_histories/1 or /service_histories/1.json
   def show
     @service_histories = ServiceHistory.find(params[:id])
+    @user=User.all
     # @customer = @service_histories.customers.all
     # @products=@service_history.products.all
      #@bookings=@car.bookings.all
@@ -25,7 +43,7 @@ class ServiceHistoriesController < ApplicationController
   def new
     @service_history = ServiceHistory.new
     @users=current_user
-    @customers=Customer.all
+    # @customers=Customer.all
     # b= @users.username   
     # @service_histories=ServiceHistory.all
     

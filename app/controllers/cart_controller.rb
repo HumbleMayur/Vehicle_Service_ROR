@@ -6,6 +6,14 @@ class CartController < ApplicationController
     # @customer = @service_histories.customers.all
   end
 
+
+
+  def create 
+    @article = Article.find(params[:article_id])
+    @comment = @article.comments.create(comment_params)
+    redirect_to article_path(@article)
+  end
+
   def add
     @product = Product.find_by(id: params[:id])
     quantity = params[:quantity].to_i

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_27_100909) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_29_052452) do
   create_table "carts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -26,6 +26,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_27_100909) do
     t.string "vehicle_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_customers_on_user_id"
   end
 
   create_table "installs", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -46,7 +48,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_27_100909) do
     t.integer "quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "customer_id", null: false
     t.index ["cart_id"], name: "index_orderables_on_cart_id"
+    t.index ["customer_id"], name: "index_orderables_on_customer_id"
     t.index ["product_id"], name: "index_orderables_on_product_id"
   end
 
@@ -76,7 +80,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_27_100909) do
     t.decimal "amount_due", precision: 10
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "orderable_id", null: false
+    t.bigint "cart_id", null: false
+    t.index ["cart_id"], name: "index_service_histories_on_cart_id"
     t.index ["customer_id"], name: "index_service_histories_on_customer_id"
+    t.index ["orderable_id"], name: "index_service_histories_on_orderable_id"
     t.index ["product_id"], name: "index_service_histories_on_product_id"
   end
 
@@ -101,6 +109,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_27_100909) do
 
   add_foreign_key "orderables", "carts"
   add_foreign_key "orderables", "products"
+  add_foreign_key "service_histories", "carts"
   add_foreign_key "service_histories", "customers"
   add_foreign_key "service_histories", "products"
 end

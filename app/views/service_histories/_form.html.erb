@@ -11,10 +11,30 @@
     </div>
   <% end %>
 
+
+  
   <div>
     <%= form.label :customer_id, style: "display: block" %>
+    <%# <%= form.hidden_field :customer_id , value: current_user.id %>
+
+    <%  if current_user && current_user.admin %>
     <%= form.text_field :customer_id %>
+
+      <% elsif current_user  %>
+      
+    <%# <%= @users.customers.ids %> 
+     <%# <% current_user.customers.each do |i|%>
+      <%# <% mk= i.name %>
+      <%# <% end %> 
+      <%= form.hidden_field :customer_id , value: @users.customers.ids %>
+      
+  
+  <% end %>
   </div>
+  
+ 
+   
+    <%# <%= current_user.id %> 
 
   <div>
     <%= form.label :product_id, style: "display: block" %>
@@ -43,7 +63,7 @@
 
   <div>
     <%= form.label :amount_due, style: "display: block" %>
-    <%= form.text_field :amount_due %>
+    <%= form.hidden_field :amount_due %>
   </div>
 
   <div>

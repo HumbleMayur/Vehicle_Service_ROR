@@ -1,38 +1,14 @@
 <div id="<%= dom_id customer %>">
-  <p>
-    <strong>Name:</strong>
-    <%= customer.name %>
-    
-  </p>
+ 
 
-  <p>
-    <strong>Email:</strong>
-    <%= customer.email %>
-  </p>
-
-  <p>
-    <strong>Phone:</strong>
-    <%= customer.phone %>
-  </p>
-
-  <p>
-    <strong>Dob:</strong>
-    <%= customer.DOB %>
-  </p>
-
-  <p>
-    <strong>Address:</strong>
-    <%= customer.address %>
-  </p>
-
-  <p>
-    <strong>Vehicle type:</strong>
-    <%= customer.vehicle_type %>
-  </p>
-
-  <p>
-    <strong>Vehicle number:</strong>
-    <%= customer.vehicle_number %>
-  </p>
-
+</div>
+<div class="jumbotron">
+  <h1 class="display-4"><%= customer.name %></h1> 
+  <p class="lead"><strong>email: </strong> <%= customer.email %></p>
+  <hr class="lead">
+  <p class="lead"> <strong>Phone no: </strong>  <%= customer.phone  %></p>
+  <p class="lead"> <strong>DOB:</strong>  <%= customer.DOB  %>   </p>
+  <p class="lead">   <strong> Address: </strong> <%= customer.address  %> </p>
+  <p class="lead"><strong> Vehicle Type: </strong> <%= customer.vehicle_type  %>   </p>
+  <p class="lead"><strong> Vehicle Number: </strong> <%= customer.vehicle_number  %>   </p>
 </div>

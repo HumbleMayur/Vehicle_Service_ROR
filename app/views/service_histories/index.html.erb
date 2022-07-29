@@ -1,7 +1,13 @@
 <p style="color: green"><%= notice %></p>
  <%# <br>
  <%= @service_histories.first.status %>
+<% current_user.customers.each do |i|%>
+<%= i.name %>
+<% end %>
+<br>
 
+
+<%= @current_user.customers.ids %>
 
 
 
@@ -50,11 +56,12 @@
 
   <%  elsif current_user   && !current_user.admin %>
   <h1> My Orders</h1>
+ 
      <% @service_histories.each do |service_history| %>
         <%# <%if service_history.customer.name != @users.username  %> 
-      <%# <% service_history.customer.name == "mayur" %> 
+       
       <tr>
-      <% if service_history.customer.name ==@users.username  %>
+      <%# <% if service_history.customer.name ==@users.username  %> %>
       <td><%= service_history.customer.name %></td>
       <td><%= service_history.product_id %></td>
 
@@ -70,7 +77,7 @@
       <td><%= service_history.product.price-service_history.amount_paid  %></td>
       <td><%= link_to "Show this service history", service_history %></td>
       <% end %>
-      <% end %>
+      <%# <% end %> %>
        <% end %>
 
     </tr>
@@ -96,6 +103,15 @@
   <%# <tr>
     <td><%= customer.name %>
 
-
+      <%# <%= current_user.id %> 
+  <%# <%= @service_histories.customer.id %> 
 
  
+
+   <%# <p>
+    #   <%= link_to "Show this customer", customer %>
+     <%# </p>
+pe
+
+ <%# current_user.id %>
+ <% current_user.customers.name%>
