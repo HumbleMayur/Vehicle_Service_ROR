@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_29_052452) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_31_162100) do
   create_table "carts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -48,9 +48,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_29_052452) do
     t.integer "quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "customer_id", null: false
     t.index ["cart_id"], name: "index_orderables_on_cart_id"
-    t.index ["customer_id"], name: "index_orderables_on_customer_id"
     t.index ["product_id"], name: "index_orderables_on_product_id"
   end
 
@@ -73,18 +71,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_29_052452) do
   create_table "service_histories", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "customer_id", null: false
     t.bigint "product_id", null: false
+    t.bigint "cart_id", null: false
     t.date "startdate"
     t.date "enddate"
     t.string "status"
-    t.decimal "amount_paid", precision: 10
-    t.decimal "amount_due", precision: 10
+    t.integer "amount_paid"
+    t.integer "amount_due"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "orderable_id", null: false
-    t.bigint "cart_id", null: false
     t.index ["cart_id"], name: "index_service_histories_on_cart_id"
     t.index ["customer_id"], name: "index_service_histories_on_customer_id"
-    t.index ["orderable_id"], name: "index_service_histories_on_orderable_id"
     t.index ["product_id"], name: "index_service_histories_on_product_id"
   end
 

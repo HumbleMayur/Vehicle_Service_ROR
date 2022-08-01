@@ -115,3 +115,29 @@ pe
 
  <%# current_user.id %>
  <% current_user.customers.name%>
+
+
+ <table class="table table-sm table-light; text-align:center">
+ <thead>
+    <tr class="table-primary">
+      <th scope="col">Service Name</th>
+      <th scope="col">Service Quantity </th>
+      <th scope="col">Service Price</th>
+    </tr>
+  </thead>  
+
+  <tbody>
+   <tr>
+   <% @orderables.each do |orderable| %>
+   
+   <%# <% if @orderables.cart_id == @service_histories.cart_id %> %>
+   <% orderable.id %>
+   <% orderable.product_id %>
+   <%# <% end %>  %>
+
+<% end %> 
+        </tr>
+        <tbody>
+        </table >
+<%# <%=  @service_histories.cart_ids  %> %>
+      

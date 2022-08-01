@@ -4,17 +4,19 @@ class CartController < ApplicationController
     # @service_histories=ServiceHistory.all
     # @service_history=@customers.service_histories.all
     # @customer = @service_histories.customers.all
+    
   end
 
 
 
-  def create 
-    @article = Article.find(params[:article_id])
-    @comment = @article.comments.create(comment_params)
-    redirect_to article_path(@article)
-  end
+  # def create 
+  #   @article = Article.find(params[:article_id])
+  #   @comment = @article.comments.create(comment_params)
+  #   redirect_to article_path(@article)
+  # end
 
   def add
+    
     @product = Product.find_by(id: params[:id])
     quantity = params[:quantity].to_i
     current_orderable = @cart.orderables.find_by(product_id: @product.id)

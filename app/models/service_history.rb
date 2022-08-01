@@ -1,4 +1,8 @@
 class ServiceHistory < ApplicationRecord
+  
+
+  # belongs_to :cart
+
   belongs_to :customer
   belongs_to :product
   

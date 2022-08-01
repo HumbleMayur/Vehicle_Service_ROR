@@ -20,7 +20,7 @@
     <%  if current_user && current_user.admin %>
     <%= form.text_field :customer_id %>
 
-      <% elsif current_user  %>
+      <% elsif current_user && !current_user.admin %>
       
     <%# <%= @users.customers.ids %> 
      <%# <% current_user.customers.each do |i|%>
@@ -40,6 +40,16 @@
     <%= form.label :product_id, style: "display: block" %>
     <%= form.text_field :product_id %>
   </div>
+
+ 
+   <div>
+     <%# <% cartttss= @cart.id %>
+       <%# <%= cartttss  %>  %>
+    <%= form.label :cart_id, style: "display: block" %>
+    <%= form.text_field :cart_id%>
+  
+  </div>
+   
 
   <div>
     <%= form.label :startdate, style: "display: block" %>
@@ -65,6 +75,10 @@
     <%= form.label :amount_due, style: "display: block" %>
     <%= form.hidden_field :amount_due %>
   </div>
+
+ 
+
+  
 
   <div>
     <%= form.submit %>

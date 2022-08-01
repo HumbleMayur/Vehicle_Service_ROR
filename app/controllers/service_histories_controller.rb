@@ -1,10 +1,11 @@
 class ServiceHistoriesController < ApplicationController
+  
   before_action :set_service_history, only: %i[ show edit update destroy ]
 
   # GET /service_histories or /service_histories.json
   def index
     # @service_histories = ServiceHistory.where(customer_id: current_user.id)
-
+    @orderables=Orderable.all
     if current_user.admin==true 
       @customers = Customer.all
     else
@@ -17,7 +18,7 @@ class ServiceHistoriesController < ApplicationController
     @users=User.all
     @service_histories=ServiceHistory.all
     a=Product.find_by(id: 1)
-    @orderables=a.orderables
+    
     @products=Product.all
 
 
@@ -107,6 +108,6 @@ class ServiceHistoriesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def service_history_params
-      params.require(:service_history).permit(:customer_id, :product_id, :startdate, :enddate, :status, :amount_paid, :amount_due)
+      params.require(:service_history).permit(:customer_id, :product_id, :cart_id, :startdate, :enddate, :status, :amount_paid, :amount_due )
     end
 end
