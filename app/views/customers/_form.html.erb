@@ -1,3 +1,16 @@
+
+
+<style> 
+.text {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid #17a2b8;
+  border-radius: 4px;
+}
+</style>
+
 <%= form_with(model: customer) do |form| %>
   <% if customer.errors.any? %>
     <div style="color: red">
@@ -11,9 +24,9 @@
     </div>
   <% end %>
 
-  <div>
+  <div class:"form-group">
     <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+    <%= form.text_field :name , style: "class: text"%>
   </div>
   <%= current_user.id%>
   <div>
@@ -43,7 +56,10 @@
 
   <div>
     <%= form.label :vehicle_type, style: "display: block" %>
-    <%= form.text_field :vehicle_type %>
+    <%# <%= form.text_field :vehicle_type %> 
+    <%= form.radio_button :vehicle_type, "car" %> Car<br>
+    <%= form.radio_button :vehicle_type, "bike" %> Bike<br>
+    <%= form.radio_button :vehicle_type, "bus" %> Bus
   </div>
 
   <div>

@@ -1,13 +1,13 @@
 <p style="color: green"><%= notice %></p>
  <%# <br>
  <%= @service_histories.first.status %>
-<% current_user.customers.each do |i|%>
-<%= i.name %>
-<% end %>
-<br>
+<%# <% current_user.customers.each do |i|%>
+<%# <%= i.name %>
+<%# <% end %>
 
 
-<%= @current_user.customers.ids %>
+
+<%# <%=  @current_user.customers.ids %>
 
 
 
@@ -15,16 +15,21 @@
 <table class="table table-striped table-bordered table-hover">
   <thead class="thead-dark">
     <tr>
-      <th> customer Name</th>
-  
-    <th>Service</th>
+   <th> Service History id </th>
+    <th> customer_id </th>
+
+    <th> customer Name</th>
+    <th>Products details</th>
+
     <th>Start Date</th>
     <th>End Date </th>
+
     <th>status</th>
-    <th>Product Price</th>
+    
+    <th>Total</th>
     <th>Amount Paid</th>
     <th>Amount Due</th>
-
+   
     <th>details</th>
   
     </tr>
@@ -36,48 +41,73 @@
 <%  if current_user && current_user.admin %>
   <% @service_histories.each do |service_history| %>
     <tr>
+     <td><%= service_history.id %></td>
+       <td><%= service_history.customer_id %></td>
      <td><%= service_history.customer.name %></td>
-
-      <td><%= service_history.product.name %></td>
+    <td>
+      <% @orderables.each do |orderable| %>
+         <% if orderable.cart_id==service_history.cart_id %>
+         <% product = orderable.product %>
+         <%= product.name %>
+         <br>
+      <% end %>
+   <% end %>
+     </td>
 
       <td><%= service_history.startdate %></td>
       <td><%= service_history.enddate %></td>
 
       <td><%= service_history.status %></td>
-      <td><%= service_history.product.price %></td>
-
+      <td><%= service_history.total %> </td> 
       <td><%= service_history.amount_paid %></td>
-      
-      
-      <td><%= service_history.product.price-service_history.amount_paid  %></td>
+      <td>Rs. <%= service_history.total - service_history.amount_paid %></td>
       <td><%= link_to "Show this service history", service_history %></td>
+      
     </tr>
       <% end %>
 
-  <%  elsif current_user   && !current_user.admin %>
-  <h1> My Orders</h1>
+  <%  elsif current_user && !current_user.admin && current_user.usertype == 0 %>
+  
  
      <% @service_histories.each do |service_history| %>
-        <%# <%if service_history.customer.name != @users.username  %> 
+        <%# <%if service_history.customer_id == @current_user.customers.ids %> 
        
       <tr>
-      <%# <% if service_history.customer.name ==@users.username  %> %>
+      <% if service_history.customer.name ==@current_user.username %> 
+      <td><%= service_history.id %></td>
+      <td><%= service_history.customer_id %></td>
       <td><%= service_history.customer.name %></td>
-      <td><%= service_history.product_id %></td>
+
+
+      <%# <td><%= service_history.product_id %>
+      
+
+ <td>
+      <% @orderables.each do |orderable| %>
+         <% if orderable.cart_id==service_history.cart_id %>
+         <% product = orderable.product %>
+         
+         <%= product.name %>
+         <br>
+          <% end %>
+  
+    <% end %>
+     </td>
 
       <td><%= service_history.startdate %></td>
       <td><%= service_history.enddate %></td>
 
       <td><%= service_history.status %></td>
-      <td><%= service_history.product.price %></td>
-
+      <%# <td><%= service_history.product.price %>
+      <td><%= service_history.total %> </td> 
       <td><%= service_history.amount_paid %></td>
-      
-      
-      <td><%= service_history.product.price-service_history.amount_paid  %></td>
+     
+      <td><%= service_history.total-service_history.amount_paid  %></td>
       <td><%= link_to "Show this service history", service_history %></td>
       <% end %>
-      <%# <% end %> %>
+    
+      <% end %>
+
        <% end %>
 
     </tr>
@@ -93,9 +123,11 @@
   
 </div>
 
+<%  if current_user && current_user.admin %>
 <%= link_to "New service history", new_service_history_path %>
+<% end %>
 
-<p>Total: <%= @cart.total %></p>
+<%# <p>Total: <%= @cart.total %>
 
 
 
@@ -117,27 +149,69 @@ pe
  <% current_user.customers.name%>
 
 
- <table class="table table-sm table-light; text-align:center">
- <thead>
-    <tr class="table-primary">
-      <th scope="col">Service Name</th>
-      <th scope="col">Service Quantity </th>
-      <th scope="col">Service Price</th>
-    </tr>
-  </thead>  
+ 
 
-  <tbody>
-   <tr>
-   <% @orderables.each do |orderable| %>
-   
-   <%# <% if @orderables.cart_id == @service_histories.cart_id %> %>
-   <% orderable.id %>
-   <% orderable.product_id %>
-   <%# <% end %>  %>
 
-<% end %> 
-        </tr>
-        <tbody>
-        </table >
-<%# <%=  @service_histories.cart_ids  %> %>
+
+ <%  if current_user && !current_user.admin && current_user.usertype == 1 %>
+  <table class="table table-striped table-bordered table-hover">
+  <thead class="thead-dark">
+    <tr>
       
+  <th> Services_history id</th>
+    <th> customer Name</th>
+  
+ 
+    <th>Products details</th>
+    <th>Start Date</th>
+    <th>End Date </th>
+    <th>status</th>
+    
+   
+    <th>details</th>
+  
+    </tr>
+    </thead>
+
+<tbody>
+
+  <br>
+
+  <br>
+  <br>
+   <% @service_histories.each do |service_history| %>
+   <% if service_history.id == 33 %>
+    <tr>
+     <td><%= service_history.id %></td>
+     <td><%= service_history.customer.name %></td>
+    
+    
+      <%# <td><%= service_history.product.name %>
+      <%# <td><%= service_history.cart_id %></td> 
+
+       <td>
+      <% @orderables.each do |orderable| %>
+         <% if orderable.cart_id==service_history.cart_id %>
+         <% product = orderable.product %>
+         
+         <%= product.name %>
+         <br>
+          <% end %>
+  
+    <% end %>
+     </td>
+     
+      <td><%= service_history.startdate %></td>
+      <td><%= service_history.enddate %></td>
+
+      <td><%= service_history.status %></td>
+   
+
+      
+      
+   
+      <td><%= link_to "Show this service history", service_history %></td>
+    </tr>
+      <% end %>
+        <% end %>
+        <% end %>

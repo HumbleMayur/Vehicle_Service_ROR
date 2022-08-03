@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+
+  # before_action :aunteicate_user
   before_action :set_render_cart
   before_action :initialize_cart
 

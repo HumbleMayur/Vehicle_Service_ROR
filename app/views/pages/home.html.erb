@@ -2,9 +2,10 @@
 <% name = current_user.present? ? current_user.username : 'user' %>
 
 <h1>Welcome <%= name %></h1>  
+
 <%# <h1>Welcome <%= name %>
 
-<%# <%= render @service_history%> %>
+<%# <%= render @service_history%> 
 
 <style>
 * {
@@ -25,25 +26,32 @@
 }
 
 .flex-item-right {
-  background-color: #FFFDD0;
+  background-color: #f1f1f1;
   padding: 10px;
   flex: 50%;
 }
   #main {
   width:  100%;
   height: 400px;
-  
   display: flex;
   flex-direction: row;
   text-align:center;
-  color: white
+  color: white;
+  padding-top:10px;
 }
 
 #main div {
   width: 50px;
-  height: 50px;
+  height: 380px;
+  padding-top: 5px;
 }
 
+img {
+  border-radius: 50%;
+  padding-top: 5px;
+   padding-top: 10px;
+  padding-bottom: 10px;
+}
 
 
 </style>
@@ -55,21 +63,52 @@
 <div class="flex-container">
   <div class="flex-item-left"><img src="https://www.confused.com/-/media/confused/articles/on-the-road/maintenance/a-car-getting-a-service-article.jpg?la=en-gb&hash=9F8A812529431971AFC246D361050FBA016581C6" alt="service" class="img-thumbnail">
 </div>
-  <div class="flex-item-right">Book a Service
 
-<%= link_to "Book Services" , new_customer_path  %>
+
+  <div class="flex-item-right">
+  <br>
+  <p style="font-size:50px; color: #17a2b8"><i>Take care of your car in the garage,<br>
+  and the car will take care of you on the road.</i></p>
+
+
+  <br>
+
+<%= link_to "Book a Services" , new_customer_path ,class:"btn btn-primary btn-lg" %>
 
   </div>
 </div>
 
 <br>
 
+<h1 style="font-size:40px ;color:Black"> Popular Services </h1>
+
 <div id="main">
-  <div style="background-color:coral; flex :20% " >  <%= link_to "Washing", "products/1" %>   </div>
-  <div style="background-color:lightgrey;flex :20%"> <%= link_to "Oil Change", "products/4" %> </div>
-  <div style="background-color:coral; flex :20%"> <%= link_to "Brake Check", "products/5" %> </div>
-  <div style="background-color:lightgrey;flex :20%"> <%= link_to "Gear Check", "products/6" %> </div>
-  <div style="background-color:coral; flex :20%"><%= link_to "Replace the spark plugs","products/7" %> </div>
+  <div style="background-color:#f1f1f1; flex :20% "> 
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiZ8oM9H99NckySg7oJRMwq0uQC8hLBRUHwA&usqp=CAU"
+   alt="service" width="300px" height="300px" >
+   <br>
+   
+   <%= link_to "Washing","products/1" ,class:"btn btn-success"%>   </div>
+  
+  <div style="background-color:#f1f1f1;flex :20%"> 
+  <img src="https://www.motodeal.com.ph/custom/blog-post/header/motorcycle-oil-change-5fccf69de5002.jpg"
+   alt="service" width="300px" height="300px" >
+  <%= link_to "Oil Change", "products/4" ,class:"btn btn-success" %> </div>
+  
+  <div style="background-color:#f1f1f1; flex :20%">
+  <img src="https://assets.firestonecompleteautocare.com/content/dam/bsro-sites/fcac/blog/images/2019/03/Firestone-technician-checking-brake-components.jpg"
+   alt="service" width="300px" height="300px" >
+  <%= link_to "Brake Check", "products/5" ,class:"btn btn-success" %> </div>
+  
+  <div style="background-color:#f1f1f1;flex :20%"> 
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQM8aeInXNK8mr2FtbNH8C_qHf71S6PJScNJg&usqp=CAU"
+   alt="service" width="300px" height="300px" >
+  <%= link_to "Gear Check", "products/6" ,class:"btn btn-success"%> </div>
+  
+  <div style="background-color:#f1f1f1; flex :20%">
+  <img src="https://contentgrid.homedepot-static.com/hdus/en_US/DTCCOMNEW/Articles/how-to-change-spark-plugs-hero.jpg"
+   alt="service" width="300px" height="300px" >
+  <%= link_to "Replace the spark plugs","products/7" ,class:"btn btn-success" %> </div>
   
 </div>
 

@@ -6,6 +6,11 @@ class ProductsController < ApplicationController
     @products = Product.all
     @orderables = Orderable.all
     @service_histories=ServiceHistory.all
+    if current_user.admin==true 
+      @customers = Customer.all
+    else
+      @customers = Customer.where(user_id: current_user.id)
+    end
     
     # @products=@orderable.products.all
     #aa=Orderable.joins(:products).where("product.id!='1'")

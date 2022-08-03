@@ -1,8 +1,48 @@
 <h1>Editing service history</h1>
 
 
-
+<%  if current_user && current_user.admin %>
 <%= render "form", service_history: @service_history %>
+
+<% end %>
+
+<%  if current_user &&  current_user.usertype == 1 %>
+
+<%= form_with(model: @service_history) do |form| %>
+  <% if @service_history.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(@service_history.errors.count, "error") %> prohibited this service_history from being saved:</h2>
+
+      <ul>
+        <% @service_history.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<div>
+  <%= form.label :status, style: "display: block" %>
+  <%= form.text_field :status %>
+</div>
+
+
+  <%  if current_user.usertype == 1 or current_user.admin  %>
+  <%= form.label :before, style: "display: block" %>
+  <%= form.file_field :before %>
+
+      <%= form.label :after, style: "display: block" %>
+  <%= form.file_field :after %>
+
+<div>
+    <%= form.submit %>
+  </div>
+<% end %>
+    <% end %>
+<% end %>
+
+
+
 
 <br>
 

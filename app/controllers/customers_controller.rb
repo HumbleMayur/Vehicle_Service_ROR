@@ -3,7 +3,12 @@ class CustomersController < ApplicationController
 
   # GET /customers or /customers.json
   def index
-    @customers = Customer.all
+    if current_user.admin==true 
+      @customers = Customer.all
+    else
+      @customers = Customer.where(user_id: current_user.id)
+    end
+   
     @service_histories=ServiceHistory.all
  
     # @customer = Customer.new

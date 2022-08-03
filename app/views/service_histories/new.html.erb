@@ -1,31 +1,23 @@
 <h1>New service history</h1>
 
-<%# <%= render "form", service_history: @service_history %> %>
+<%# <%= render "form", service_history: @service_history %> 
 
+
+
+
+
+
+
+
+
+
+
+<%= render "form", service_history: @service_history %>
 
 <div>
   <%= link_to "Back to service histories", service_histories_path %>
 </div>
 
-
-
-
-
-
-
-
-<h1>Your Cart</h1>
-<% @cart.orderables.each do |orderable| %>
-  <% product = orderable.product %>
-  <p><%= product.name %> * <%= orderable.quantity %> = $<%= product.price * orderable.quantity %></p>
-<% end %>
-<p>Your total is $<%= @cart.total %> </p>
-
-<br>
-<% service_history=@service_history %>
-<% c=@service_history.customer_id %>
-
-<%= render "form", service_history: @service_history %>
 
 
 

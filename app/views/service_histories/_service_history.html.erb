@@ -1,42 +1,50 @@
 <div id="<%= dom_id service_history %>">
-  <p>
-    <strong>Customer:</strong>
-    <%= service_history.customer_id %>
-    
-  </p>
-
-  <p>
-    <strong>Product:</strong>
-    <%= service_history.product_id %>
-  </p>
-
-  <p>
-    <strong>Startdate:</strong>
-    <%= service_history.startdate %>
-  </p>
-
-  <p>
-    <strong>Enddate:</strong>
-    <%= service_history.enddate %>
-  </p>
-
-  <p>
-    <strong>Status:</strong>
-    <%= service_history.status %>
-  </p>
-
-  <p>
-    <strong>Amount paid:</strong>
-    <%= service_history.amount_paid %>
-  </p>
-
-  <p>
+  
+  <%# <p>
     <strong>Amount due:</strong>
-     <%# <%= @service_history.amount_paid - @service_history.product.price %> %>
+     <%# <%= @service_history.amount_paid - @service_history.product.price %> 
    
-  </p> 
+  
 
 
-  <%# <%= @service_history.product.price %> %>
+  <%# <%= @service_history.product.price %> 
 
 </div>
+
+</div>
+<div class="jumbotron">
+  <h1 class="display-4">Service History</h1> 
+  <hr class="lead">
+  <p class="lead"><strong>Customer Id </strong> <%= service_history.customer_id %></p>
+  
+  <p class="lead"> <strong>Product Id </strong>  <%= service_history.product_id %></p>
+  <p class="lead"> <strong>Start Date</strong>  <%= service_history.startdate %>  </p>
+  <p class="lead">   <strong> Start enddate </strong> <%= service_history.enddate %> </p>
+  <p class="lead"><strong> Status </strong> <%= service_history.status %>  </p>
+  <p class="lead"><strong> Amound Paid </strong> <%= service_history.amount_paid %>   </p>
+
+
+
+
+<table style="width:80%">
+  <tr>
+    <th>
+    <% if service_history.before.attached? %>
+  <%= image_tag service_history.before ,width:"600px" ,height:"400px" %>
+  <% end %>
+</th>
+    <th>
+     <% if service_history.after.attached? %>
+  <%=  image_tag service_history.after ,width:"600px" ,height:"400px"%>
+   <% end %>
+    </th>
+ 
+  </tr>
+  
+</table>
+
+
+ 
+ 
+ 
+ </div>

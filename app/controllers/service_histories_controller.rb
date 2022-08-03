@@ -12,7 +12,7 @@ class ServiceHistoriesController < ApplicationController
       @customers = Customer.where(user_id: current_user.id)
     end
     # @customers=Customer.all
-    # @users=current_user
+    @users=current_user
 
     
     @users=User.all
@@ -37,6 +37,16 @@ class ServiceHistoriesController < ApplicationController
     # @customer = @service_histories.customers.all
     # @products=@service_history.products.all
      #@bookings=@car.bookings.all
+     respond_to do |format|
+      format.html
+      format.pdf do
+        pdf=ServiceHistoryPdf.new(@service_history)
+        send_data pdf.render, filename: "Service_History#{@service_history.id}.pdf",
+                              type: "application/pdf",
+                              dispostion: "inline"
+      end
+    end
+ 
 
   end
 
@@ -108,6 +118,6 @@ class ServiceHistoriesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def service_history_params
-      params.require(:service_history).permit(:customer_id, :product_id, :cart_id, :startdate, :enddate, :status, :amount_paid, :amount_due )
+      params.require(:service_history).permit(:customer_id, :product_id, :cart_id, :startdate, :enddate, :status, :amount_paid, :amount_due, :before, :after ,:total)
     end
 end

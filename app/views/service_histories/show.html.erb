@@ -3,72 +3,20 @@
 <%= render @service_history %>
 
 <div>
-  <%= link_to "Edit this service history", edit_service_history_path(@service_history) %> 
+  <%= link_to "Edit this service history", edit_service_history_path(@service_history) ,class:"btn btn-secondary"%> |
+  <%= link_to "Destroy this service history", @service_history, method: :delete ,class:"btn btn-danger"%>
   <br>
-  <%= link_to "Back to service histories", service_histories_path %>
+  <br>
+  <br>
+  <%= link_to "Back to service histories", service_histories_path ,class:"btn btn-primary"%>
 
-  <%= button_to "Destroy this service history", @service_history, method: :delete %>
+  
 </div>
+<br>
+<%= link_to "Invoice", service_history_path(@service_history ,format:"pdf") ,class:"btn btn-primary"%>
 
-
-<% service_history=@service_history  %> 
-<%= form_with(model: service_history) do |form| %>
-  <% if service_history.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(service_history.errors.count, "error") %> prohibited this service_history from being saved:</h2>
-
-      <ul>
-        <% service_history.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div>
-    <%= form.label :customer_id, style: "display: block" %>
-    <%= form.text_field :customer_id %>
-  </div>
-
-  <div>
-    <%= form.label :product_id, style: "display: block" %>
-    <%= form.text_field :product_id %>
-  </div>
-
-  <div>
-    <%= form.label :startdate, style: "display: block" %>
-    <%= form.date_field :startdate %>
-  </div>
-
-  <div>
-    <%= form.label :enddate, style: "display: block" %>
-    <%= form.date_field :enddate %>
-  </div>
-
-  <div>
-    <%= form.label :status, style: "display: block" %>
-    <%= form.text_field :status %>
-  </div>
-
-  <div>
-    <%= form.label :amount_paid, style: "display: block" %>
-    <%= form.text_field :amount_paid %>
-  </div>
-
-  <div>
-    <%= form.label :amount_due, style: "display: block" %>
-    <%= form.text_field :amount_due %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
-
-
-
-
+  
      
-   
+
    
  
